@@ -46,25 +46,24 @@ public class BbsDAO {
 			  if(rs.next()) {
 				  return rs.getInt(1) +1;
 			  }
-			  return 1; //첫번째 게시물인경우
+			  return 1; //첫번째 게시물인경우 1   두번째부터는 return rs.getInt(1)+1을반환
 		  } catch (Exception e) {
 			  e.printStackTrace();
 		  }
-		  return -1; //데이터베이스오류
+		  return -1; //데이터베이스오류 일경우 -1을반환
 		}
 	
 	 public int write(String bbsTitle, String userID, String bbsContent)  //글쓰기 
-	 {
-		
+	 {	
 		 String SQL = "INSERT INTO BBS VALUES (?, ?, ?, ?, ?, ?)";
 		  try {
 			  PreparedStatement pstmt = conn.prepareStatement(SQL);
-			  pstmt.setInt(1, getNext());
+			  	 pstmt.setInt(1, getNext());
 			  pstmt.setString(2, bbsTitle);
 			  pstmt.setString(3, userID);
 			  pstmt.setString(4, getDate());
 			  pstmt.setString(5, bbsContent);
-			  pstmt.setInt(6, 1); //처음글 일경우
+			  	 pstmt.setInt(6, 1); //처음글 일경우
 			 
 			  return pstmt.executeUpdate();		 
 		  } catch (Exception e) {

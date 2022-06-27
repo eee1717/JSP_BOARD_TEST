@@ -19,74 +19,66 @@
 %>
 
 
-<div class="collapse" id="navbarToggleExternalContent">
- 
- 
-  <div class="bg-dark p-4">
-   
-   <a class="navbar-brand" href="join.jsp">JSP 게시판 웹사이트</a> 
-   
-		<ul class="nav navbar-nav">
-			<li class="active"><a href="main.jsp">메인</a></li>
-			<li><a href="BBS.jsp">게시판</a></li>
-		</ul>
-<%
-  if(userID ==null){
-%> 
-	
-<ul class="nav navbar-nav navbar-right">	
-<div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-   회원관리
-  </button>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-		<li><a href="login.jsp">로그인</a></li>
-		<li><a href="Join.jsp">회원가입</a></li>
-  </ul>
-</div>	
-</ul>		
-	
-	
-	
-<%
-  } else{
-	  
-%>	  
-	
-<ul class="nav navbar-nav navbar-right">	
-<div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-   회원관리
-  </button>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-	<li><a href="logoutAction.jsp">로그아웃</a></li>
-	
-  </ul>
-</div>	
-</ul>		
-
-	  
-<%	  
-  }
-%>
 
 
-
-
-  </div>  <!-- bg-dark p-4 끝 -->
- 
- 
-</div> <!-- navbarToggleExternalContent끝 -->
-
-
-<nav class="navbar navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand" href="join.jsp">JSP 게시판 웹사이트</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="main.jsp">메인</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="BBS.jsp">게시판</a>
+        </li>
+        
+       		 <%
+  			if(userID ==null){
+			%> 
+        
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> 드롭다운관리 </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="login.jsp">로그인</a></li>    
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="Join.jsp">회원가입</a></li>
+          </ul>
+        </li>
+        
+        <%
+ 			
+  			} else{
+	  
+		%>	  
+		 <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> 드롭다운관리 </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+             <li><a class="dropdown-item" href="logoutAction.jsp">로그아웃</a></li>       
+          </ul>
+        </li>
+		
+	
+		
+		
+		
+		
+        
+        <%	  
+		  }
+		%>
+        
   
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">몰라</a>
+        </li>
+      </ul>
+  
+    </div>
   </div>
-  
 </nav>
 
 

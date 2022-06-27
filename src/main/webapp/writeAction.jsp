@@ -23,8 +23,8 @@
 if(session.getAttribute("userID") !=null){
 	 userID = (String) session.getAttribute("userID");
 }
-if(userID !=null){
-	 PrintWriter script =response.getWriter();
+if(userID == null){
+	   PrintWriter script =response.getWriter();
 	   script.println("<script>");
 	   script.println("alert(' 로그인을 하세요.')");
 	   script.println("location.href = 'login.jsp'");
@@ -32,12 +32,11 @@ if(userID !=null){
 }   // session을 확인해서 이미 있는 아아디인지확인
  
 else{
-
 	  if(bbs.getBbsTitle() == null || bbs.getBbsContent() ==null )
 	  {
 		 PrintWriter script = response.getWriter();
 		   script.println("<script>");
-		   script.println("alert('입력되지않은사항이있습니다..')");
+		   script.println("alert('입력되지않은사항이있습니다.')");
 		   script.println("history.back()");
 		   script.println("</script>");
 	  }
@@ -46,8 +45,7 @@ else{
 		  BbsDAO bbsDAO = new BbsDAO();
 		   int result = bbsDAO.write(bbs.getBbsTitle(), userID, bbs.getBbsContent());    
 	
-		
-		   if(result == -1) //이미존재하는아이디
+		   if(result == -1) //데이터베이스 오류
 		   {
 			   PrintWriter script =response.getWriter();
 			   script.println("<script>");
@@ -55,7 +53,8 @@ else{
 			   script.println("history.back()");
 			   script.println("</script>");
 			   
-		   } else{
+			   } 
+	  		   else{
 			   
 			   PrintWriter script =response.getWriter();
 			   script.println("<script>");

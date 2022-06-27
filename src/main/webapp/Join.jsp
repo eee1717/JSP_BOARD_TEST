@@ -11,55 +11,98 @@
 <body>
 
 
+<%
+   String userID = null;
+   if(session.getAttribute("userID") != null){
+	   userID =(String) session.getAttribute("userID");
+   }
+%>
 
-<div class="collapse" id="navbarToggleExternalContent">
-  <div class="bg-dark p-4">
-   
-   <a class="navbar-brand" href="main.jsp">JSP 게시판 회원가입</a>
-   
-   
-  </div>
+
   
-  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-<ul class="nav navbar-nav">
-
-<li><a href="main.jsp">메인</a></li>
-
-<li><a href="bbs.jsp">게시판</a></li>
-
-</ul>
-
-<ul class="nav navbar-nav navbar-right">
-
-<li class="dropdown">
-
-<a href="#" class="dropdown-toggle"
-
-data-toggle="dropdown" role="button" aria-haspopup="true"
-
-aria-expanded="false">접속하기<span class="caret"></span></a>
-
-<ul class="dropdown-menu">
-
-<li class="active"><a href="login.jsp">로그인</a></li>
-
-<li><a href="join.jsp">회원가입</a></li>
-</ul>
-</li>
-</ul>
-</div>
-  
-  
-  
-</div>
 <nav class="navbar navbar-dark bg-dark">
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand" href="join.jsp">JSP 게시판 웹사이트</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="main.jsp">메인</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="BBS.jsp">게시판</a>
+        </li>
+        
+       		 <%
+  			if(userID ==null){
+			%> 
+        
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> 드롭다운관리 </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="login.jsp">로그인</a></li>    
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="Join.jsp">회원가입</a></li>
+          </ul>
+        </li>
+        
+        <%
+ 			
+  			} else{
+	  
+		%>	  
+		 <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> 드롭다운관리 </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+             <li><a class="dropdown-item" href="logoutAction.jsp">로그아웃</a></li>
+            <li><hr class="dropdown-divider"></li>
+          
+          </ul>
+        </li>
+		
+	
+		
+		
+		
+		
+        
+        <%	  
+		  }
+		%>
+        
+  
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">몰라</a>
+        </li>
+      </ul>
+  
+    </div>
   </div>
 </nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
 
 <div class="container">
 <div class="col-lg-4"></div>
