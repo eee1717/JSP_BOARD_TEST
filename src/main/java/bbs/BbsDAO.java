@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class BbsDAO {
 
@@ -73,8 +74,79 @@ public class BbsDAO {
 		 
 	 }
 	
+	 public ArrayList<Bbs> getList(int pageNumber){
+		 
+		  String SQL = "SELECT * FROM BBS WHERE bbsID < ? AND bbsAvailable = 1 ORDER BY bbsID DESC LIMIT 6"; // 내용을 위에서부터 6깨까지만 불러옴
+		  ArrayList<Bbs> list = new ArrayList<Bbs>();
+		  try {
+			  PreparedStatement pstmt = conn.prepareStatement(SQL);
+			  pstmt.setInt(1, getNext() -(pageNumber -1) *10);		
+			  rs = pstmt.executeQuery();
+			  while(rs.next()) {
+				  Bbs bbs = new Bbs();
+				  bbs.setBbsID(rs.getInt(1));
+				  bbs.setBbsTitle(rs.getString(2));
+				  bbs.setUserID(rs.getString(3));
+				  bbs.setBbsDate(rs.getString(4));
+				  bbs.setBbsContent(rs.getString(5));
+				  bbs.setBbsAvailable(rs.getInt(6));
+				  list.add(bbs);
+				
+			  } 
+		  } catch (Exception e) {
+			  e.printStackTrace();
+		  }
+		  return list;
+		}
+		 
+	 public boolean nextPage(int pageNumber)  //페이징 처리를위해서 존재하는함수
+	 {
+		
+		  String SQL = "SELECT * FROM BBS WHERE bbsID < ? AND bbsAvailable = 1 ORDER BY bbsID DESC LIMIT 10"; // 내용을 위에서부터 10깨까지만 불러옴
+		  ArrayList<Bbs> list = new ArrayList<Bbs>();
+		  try {
+			  PreparedStatement pstmt = conn.prepareStatement(SQL);
+			  pstmt.setInt(1, getNext() -(pageNumber -1) *10);	  //게시글이 11개가되면 2개가됨  21개가되면 3개(3페이지)가됨	
+			  rs = pstmt.executeQuery();
+			 if(rs.next()) {
+				  
+				return true;
+			  } 
+		  } catch (Exception e) {
+			  e.printStackTrace();
+		  }
+		  return false;
+		}
+		 
+	 public Bbs getBbs(int bbsID) {
+		 
+		  String SQL = "SELECT * FROM BBS WHERE bbsID =?";  //bbsID의 값을 입력시 그숫자에 해당하는 게시글을 가져온다.
+		  try {
+			  PreparedStatement pstmt = conn.prepareStatement(SQL);
+			  pstmt.setInt(1, bbsID);	 
+			  rs = pstmt.executeQuery();
+			 if(rs.next()) {				  
+				  Bbs bbs = new Bbs();
+				  bbs.setBbsID(rs.getInt(1));
+				  bbs.setBbsTitle(rs.getString(2));
+				  bbs.setUserID(rs.getString(3));
+				  bbs.setBbsDate(rs.getString(4));
+				  bbs.setBbsContent(rs.getString(5));
+				  bbs.setBbsAvailable(rs.getInt(6));
+				  
+				  return bbs;	  
+			  } 
+		  } catch (Exception e) {
+			  e.printStackTrace();
+		  }
+		  return null; //해당글이 존재하지않은경우 null을 반환
+		 
+		 
+	 }
+	 
+		 
+	 }
 	
+
 	
-	
-	
-}
+
