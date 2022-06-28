@@ -41,7 +41,7 @@
  
   <div class="bg-dark p-4">
    
-   <a class="navbar-brand" href="Join.jsp">JSP 게시판 웹사이트</a> 
+   <a class="navbar-brand" href="main.jsp">JSP 게시판 웹사이트</a> 
    
 		<ul class="nav navbar-nav">
 			<li ><a href="main.jsp">메인</a></li>
@@ -139,7 +139,7 @@
         	 
        %> 	 
          	  <a href="update.jsp?bbsID=<%= bbsID %>" class="btn btn-primary">수정 </a>
-         	  <a href="deleteAction.jsp?bbsID=<%= bbsID %>" class="btn btn-primary">삭제 </a>
+         	  <a  onclick="return confirm('정말로 삭제하시겠습니까?')"  href="deleteAction.jsp?bbsID=<%= bbsID %>" class="btn btn-primary">삭제 </a>
        <%
          }
        %>

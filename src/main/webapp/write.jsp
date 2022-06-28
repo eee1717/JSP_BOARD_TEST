@@ -25,7 +25,7 @@
  
   <div class="bg-dark p-4">
    
-   <a class="navbar-brand" href="Join.jsp">JSP 게시판 웹사이트</a> 
+   <a class="navbar-brand" href="main.jsp">JSP 게시판 웹사이트</a> 
    
 		<ul class="nav navbar-nav">
 			<li ><a href="main.jsp">메인</a></li>
